@@ -1,0 +1,38 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+
+{% block title %}Подробнее{% endblock %}
+
+
+
+{% block body %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+
+<style>
+    img {
+    object-fit: cover;
+    width: 360px;
+  height: 300px;
+
+  }
+  .left {
+    float: left;
+    margin: 10px;
+  }
+
+
+</style>
+<h1 class="text-light" align="center">Примеры работ</h1>
+{% for item in work.work_barber.all %}
+<div class="container der" align="center">
+<div class="left">
+    <img src="{{ item.img.url }}">
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+
+{% block title %}Подробнее{% endblock %}
+
+
+
+{% block body %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+
+
+<h1 class="text-light"  align="center">{{ servis }}</h1>
+
+       {% for item in servis.barber_servis.all %}
+<div align="center">
+            <div class="card mb-3" style="max-width: 960px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ item.img.url }}" class="img-fluid rounded-start">
+        <i class="fa-solid fa-star fa-xl" style="color: #e9c307;"></i><i class="fa-solid fa-star fa-xl" style="color: #e9c307;"></i><i class="fa-solid fa-star fa-xl" style="color: #e9c307;"></i><i class="fa-solid fa-star fa-xl" style="color: #e9c307;"></i><i class="fa-solid fa-star fa-xl" style="color: #e9c307;"></i>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.title }}</h5>
+        <p class="card-text">{{ item.description }}</p>
+              <div id="sample" onclick="copyText()" class="text-light">
+        <h2 style="cursor: pointer;" class="card-text"><small class="text-muted"><i class="fa-solid fa-phone"></i>{{ item.phone }}</small></h2><br>
+                      <script>
+        function copyText() {
+
+            /* Copy text into clipboard */
+            navigator.clipboard.writeText
+                ("{{ item.phone }}");
+
+                alert("Номер скопирован");
+        }
+    </script>
+    </div>
+    <br />
+          <a class="btn btn-dark btn-lg" href="{% url 'work' item.id %}">Примеры работ</a>
+          <a href="{% url 'reverse' item.id %}" class="btn btn-dark btn-lg">Отзывы</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+        {% endfor %}
+
+{% endblock %}

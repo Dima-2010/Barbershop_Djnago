@@ -1,0 +1,40 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+
+{% block title %} Отзывы {% endblock %}
+
+
+
+{% block body %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+<div class="container" align="center">
+    <form method="post">
+        {% csrf_token %}
+{{ form.text }}
+        <style type="text/css">
+                    .sub{
+                        width: 360px;
+                    }
+
+        @media screen and (max-width: 380px) {.sub{width: 100%}}
+      </style>
+
+        <button style="" type="submit" class="btn btn-light sub">Опубликовать</button>
+        </form>
+</div>
+<br>
+{% for item in reverse.comment_barber.all %}
+    <div class="container bg-light" style="max-width: 360px">
+  <p><span>{{ item.author }}</span></p>
+  <p>{{ item.text }}</p>
+</div>
+{% endfor %}
+
+
+
+{% endblock %}
